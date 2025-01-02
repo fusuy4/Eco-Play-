@@ -69,14 +69,14 @@ class Game():
             self.actions[action] = False
 
     def update(self):
-        self.state_stack[-1].update(self.dt, self.actions)
+        self.state_stack[-1].update(self.dt, self.actions) # check whatever is at the end of the stack/list
 
     def render(self): # updates the game window we see on screen
         self.state_stack[-1].render(self.game_canvas)
         self.screen.blit(pygame.transform.scale(self.game_canvas,(self.SCREEN_WIDTH, self.SCREEN_HEIGHT)), (0,0))
         pygame.display.flip()
 
-    def get_dt(self): # watch frame dependence vid (Computes delta time)
+    def get_dt(self): # computes delta time
         now = time.time()
         self.dt = now - self.prev_time
         self.prev_time = now
@@ -89,9 +89,10 @@ class Game():
         surface.blit(text_surface, text_rect) # blits the image onto another Surface.
 
     def load_assets(self): # creates different pointers to difference directories
-        self.assests_dir = os.path.join("assets") # os makes file paths for us
-        self.sprite_dir = os.path.join(self.assests_dir, "sprites")
-        self.font_dir = os.path.join(self.assests_dir, "font")
+        self.assets_dir = os.path.join("assets") # os makes file paths for us
+        self.sprite_dir = os.path.join(self.assets_dir, "sprites")
+        self.font_dir = os.path.join(self.assets_dir, "font")
+        self.images_dir = os.path.join(self.assets_dir, "images")
         self.font = pygame.font.Font(os.path.join(self.font_dir, "PressStart2P-vaV7.ttf"), 20)
 
     def load_states(self):
