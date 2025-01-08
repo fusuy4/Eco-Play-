@@ -1,1 +1,7 @@
-This project has two implimentations in the process of being made, TVer_1 and TVer_2, and has a working version in WVer_1. 
+EcoPlay is a game dedicated to raising awareness about recycling and correctly disposing of waste. It started out as a HackAThon project at the Spring 2024 Princeton HackAThon and we have been working on and off on the game since then. It employs a simple dropper type mechanic where the player is a recycling bin that collects garbage. The goal of the game is to maximize the amount of recyclable waste and avoid trash waste.
+
+How it was built
+This is coded entirely in Python and used only the pygame library. It employs a stack system, inspired by CDcodes (https://github.com/ChristianD37?tab=overview&from=2019-12-01&to=2019-12-31), states, OOP, and more to bring the game to life. All of the art and the soundtrack is completely original as well.
+
+The most recent version of this project is TVer_3 which is a functional game with a working menu system. The work being done at this point is adding in all the features. 
+

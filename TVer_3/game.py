@@ -15,6 +15,9 @@ class Game():
         self.running, self.playing = True, True
         self.actions = {"left": False, "right": False, "up" : False, "down" : False, "action1" : False, "action2" : False, "start" : False}
         self.dt, self.prev_time = 0, 0 # Delta Time (Change in Time), previous time
+        self.high_score = 0
+        self.past_score = 0
+        self.new_high = True
         self.state_stack = []
         self.load_assets()
         self.load_states()
@@ -87,8 +90,8 @@ class Game():
     #     text_rect.center = (x, y)
     #     surface.blit(text_surface, text_rect) # blits the image onto another Surface.
     def draw_text(self, text, size, x, y):
-        font = self.font
-        text_surface = font.render(text, True, self.BLACK)
+        fonto = pygame.font.Font(self.font, size)
+        text_surface = fonto.render(text, True, self.BLACK)
         text_rect = text_surface.get_rect()
         text_rect.center = (x, y)
         self.game_canvas.blit(text_surface, text_rect)
@@ -98,7 +101,9 @@ class Game():
         self.sprite_dir = os.path.join(self.assets_dir, "sprites")
         self.font_dir = os.path.join(self.assets_dir, "font")
         self.images_dir = os.path.join(self.assets_dir, "images")
-        self.font = pygame.font.Font(os.path.join(self.font_dir, "PressStart2P-vaV7.ttf"), 20)
+        self.font = (os.path.join(self.font_dir, "PressStart2P-vaV7.ttf"))
+        self.sounds_dir = (os.path.join(self.assets_dir, "sounds"))
+
 
     def load_states(self):
         self.title_screen = Title(self)

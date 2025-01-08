@@ -71,6 +71,12 @@ class Game():
 
                 pygame.display.set_caption("Playing")
                 
+                # Basically, a self.window is displayed with just the background
+                # Then in a seperate window, objects are drawn onto self.display
+                # Once the loop finishes, the self.display is drawn onto the window
+                # Then the plain self.window is displayed again
+                # and the updated position of the objects are drawn onto the display
+                # Dsiplay is then drawn on window, and process continues
                 self.window.blit(self.display, (0,0))
                 
                 if self.game_playing == True:

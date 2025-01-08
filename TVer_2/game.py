@@ -1,4 +1,5 @@
 import os, time, pygame
+import pygame.pypm
 from menu import * # imports everything from menu (dont rly need)
 from states.title import Title
 import random
@@ -25,23 +26,21 @@ class Game():
             self.update()
             self.render()
 
-    def get_events(self): # change later for arrow keys
+    def get_events(self): 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.playing = False
                     self.running = False
                 if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_ESCAPE:
-                        self.playing = False
-                        self.running = False
-                    if event.key == pygame.K_a:
+                    if event.key == pygame.K_a or event.key == pygame.K_LEFT:
                         self.actions['left'] = True
-                    if event.key == pygame.K_d:
+                    if event.key == pygame.K_d or event.key == pygame.K_RIGHT:
                         self.actions['right'] = True
-                    if event.key == pygame.K_w:
+                    if event.key == pygame.K_w or event.key == pygame.K_UP:
                         self.actions['up'] = True
-                    if event.key == pygame.K_s:
+                    if event.key == pygame.K_s or event.key == pygame.K_DOWN:
                         self.actions['down'] = True
+
                     if event.key == pygame.K_p:
                         self.actions['action1'] = True
                     if event.key == pygame.K_o:
@@ -50,20 +49,20 @@ class Game():
                         self.actions['start'] = True  
 
                 if event.type == pygame.KEYUP:
-                    if event.key == pygame.K_a:
+                    if event.key == pygame.K_a or event.key == pygame.K_LEFT:
                         self.actions['left'] = False
-                    if event.key == pygame.K_d:
+                    if event.key == pygame.K_d or event.key == pygame.K_RIGHT:
                         self.actions['right'] = False
-                    if event.key == pygame.K_w:
+                    if event.key == pygame.K_w or event.key == pygame.K_UP:
                         self.actions['up'] = False
-                    if event.key == pygame.K_s:
+                    if event.key == pygame.K_s or event.key == pygame.K_DOWN:
                         self.actions['down'] = False
                     if event.key == pygame.K_p:
                         self.actions['action1'] = False
                     if event.key == pygame.K_o:
                         self.actions['action2'] = False
                     if event.key == pygame.K_RETURN:
-                        self.actions['start'] = False  
+                        self.actions['start'] = False
     def reset_keys(self):
         for action in self.actions:
             self.actions[action] = False

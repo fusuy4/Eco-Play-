@@ -39,16 +39,14 @@ class Menu(State):
     def transition_state(self):
         if self.menu_options[self.index] == "Party": # Play Game
             new_state = Game_World(self.game)
-            self.game.state_stack.pop()
+            # self.game.state_stack.pop()
             new_state.enter_state()
         elif self.menu_options[self.index] == "Items": # Credits
             new_state = Credits(self.game)
             self.game.state_stack.pop()
             new_state.enter_state()
         elif self.menu_options[self.index] == "Magic": 
-            new_state = Game_World(self.game)
-            self.game.state_stack.pop()
-            new_state.enter_state()
+            pass
         elif self.menu_options[self.index] == "Exit": # Exit
             while len(self.game.state_stack) > 1:
                 self.game.state_stack.pop()

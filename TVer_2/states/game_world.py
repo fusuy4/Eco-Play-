@@ -5,7 +5,7 @@ from states.pause_menu import PauseMenu
 class Game_World(State):
     def __init__(self, game):
         State.__init__(self, game)
-        self.background_img = pygame.image.load(os.path.join(self.game.assets_dir, "map", "background.jpg")) # change
+        self.background_img = pygame.image.load(os.path.join(self.game.images_dir, "background.png"))
         self.player = Player(self.game)
 
     def update(self, delta_time, actions):

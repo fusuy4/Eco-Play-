@@ -33,15 +33,20 @@ class PauseMenu(State):
         display.blit(self.cursor_img, self.cursor_rect)
 
     def transition_state(self):
+        from states.game_world import Game_World
         if self.menu_options[self.index] == "Party":  # Current Score
             pass
         elif self.menu_options[self.index] == "Items": # Restart
-            pass # TO-DO
+            self.game.state_stack.pop()
+            self.game.state_stack.pop()
+            new_state = Game_World(self.game)
+            new_state.enter_state()
         elif self.menu_options[self.index] == "Magic": # Quit to Main Menu
-            pass # TO-DO
-        elif self.menu_options[self.index] == "Exit": # Quit to Desktop
             while len(self.game.state_stack) > 1:
                 self.game.state_stack.pop()
+        elif self.menu_options[self.index] == "Exit": # Quit to Desktop
+            self.game.playing = False
+            self.game.running = False
 
 
     def update_cursor(self, actions):

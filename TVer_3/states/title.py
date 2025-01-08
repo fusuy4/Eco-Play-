@@ -10,6 +10,7 @@ class Title(State):
         def __init__(self, game): 
             State.__init__(self, game)
             self.titleScreen = pygame.image.load(os.path.join(self.game.images_dir, "titlescreen.jpeg")) # change
+            self.menu_mus = pygame.mixer.music.load(os.path.join(self.game.sounds_dir, "MainMenu.mp3"))
 
 
         def update(self, delta_time, actions):
@@ -20,6 +21,7 @@ class Title(State):
             if actions["start"]:
                 new_state = Menu(self.game)
                 new_state.enter_state()
+                pygame.mixer.music.play()                
             self.game.reset_keys()
             
 

@@ -2,6 +2,7 @@ import pygame, os
 from states.state import State
 from states.pause_menu import PauseMenu
 from assets.sprites.game_objects import FallingObjects
+from states.game_over_menu import GameOver
 import random
 import time
 
@@ -10,7 +11,6 @@ class Game_World(State):
         self.game = game
         State.__init__(self, game)
         self.background_img = pygame.image.load(os.path.join(self.game.images_dir, "background.png"))
-        # self.player = Player(self.game)
         
         # objects
         self.base_file = (os.path.join(self.game.assets_dir, "sprites"))
@@ -52,7 +52,15 @@ class Game_World(State):
         
         elapsed_time = time.time() - self.start_time
         if (elapsed_time >= 5):
+            if self.score > self.game.high_score:
+                self.game.high_score = self.score
+                self.game.new_high = True
+            else:
+                self.game.new_high = False
+            
+            self.game.past_score = self.score
             new_state = GameOver(self.game)
+            new_state.enter_state()
             print("hairline")
             print(elapsed_time)
 
@@ -82,9 +90,11 @@ class Game_World(State):
         if actions["right"] and self.recyclebin_rect.right < 480:
             self.recyclebin_rect.x += self.vel
 
+        pygame.time.delay(10)
+
 
     def render(self, display):
         display.blit(self.background_img, (0,0))
         display.blit(self.recyclebin, self.recyclebin_rect)
         display.blit(self.cur_trash.image, self.cur_trash.rect)
-        self.game.draw_text(f'Score: {self.score}', .2, self.game.GAME_W / 2 - self.game.GAME_W / 5, 5)
+        self.game.draw_text(f'Score: {self.score}', 15, 60, 10)
