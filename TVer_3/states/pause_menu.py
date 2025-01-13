@@ -6,11 +6,11 @@ class PauseMenu(State):
         self.game = game
         State.__init__(self, game)
         # Set the menu
-        self.menu_img = pygame.image.load(os.path.join(self.game.assets_dir, "map", "menu.png"))
+        self.menu_img = pygame.image.load(os.path.join(self.game.assets_dir, "map", "pausemenu.PNG"))
         self.menu_rect = self.menu_img.get_rect()
-        self.menu_rect.center = (self.game.GAME_W*.85, self.game.GAME_H*.4)
+        self.menu_rect.center = (self.game.GAME_W*.85, self.game.GAME_H*.6)
         # Set the cursor and menu states
-        self.menu_options = {0 :"Party", 1 : "Items", 2 :"Magic", 3 : "Exit"}
+        self.menu_options = {0 :"Resume", 1 : "Restart", 2 :"Exit"}
         self.index = 0
         self.cursor_img = pygame.image.load(os.path.join(self.game.assets_dir, "map", "cursor.png"))
         self.cursor_rect = self.cursor_img.get_rect()
@@ -21,8 +21,6 @@ class PauseMenu(State):
         self.update_cursor(actions)      
         if actions["start"]:
             self.transition_state()
-        if actions["action1"]:
-            self.exit_state()
         self.game.reset_keys()
 
     def render(self, display):
@@ -34,19 +32,16 @@ class PauseMenu(State):
 
     def transition_state(self):
         from states.game_world import Game_World
-        if self.menu_options[self.index] == "Party":  # Current Score
-            pass
-        elif self.menu_options[self.index] == "Items": # Restart
+        if self.menu_options[self.index] == "Resume":  # Current Score
+            self.game.state_stack.pop()
+        elif self.menu_options[self.index] == "Restart": # Restart
             self.game.state_stack.pop()
             self.game.state_stack.pop()
             new_state = Game_World(self.game)
             new_state.enter_state()
-        elif self.menu_options[self.index] == "Magic": # Quit to Main Menu
+        elif self.menu_options[self.index] == "Exit": # Quit to Main Menu
             while len(self.game.state_stack) > 1:
                 self.game.state_stack.pop()
-        elif self.menu_options[self.index] == "Exit": # Quit to Desktop
-            self.game.playing = False
-            self.game.running = False
 
 
     def update_cursor(self, actions):

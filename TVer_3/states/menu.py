@@ -8,16 +8,16 @@ class Menu(State):
         self.game = game
         State.__init__(self, game)
         # Set the menu
-        self.menu_img = pygame.image.load(os.path.join(self.game.assets_dir, "map", "menu.png"))
+        self.menu_img = pygame.image.load(os.path.join(self.game.assets_dir, "map", "mainmenu.PNG"))
         self.menu_rect = self.menu_img.get_rect()
-        self.menu_rect.center = (self.game.GAME_W*.5, self.game.GAME_H*.4)
-        self.background_img = pygame.image.load(os.path.join(self.game.images_dir, "background.png"))
+        self.menu_rect.center = (self.game.GAME_W*.5, self.game.GAME_H*.6)
+        self.background_img = pygame.image.load(os.path.join(self.game.images_dir, "painting.PNG"))
         # Set the cursor and menu states
-        self.menu_options = {0 :"Party", 1 : "Items", 2 :"Magic", 3 : "Exit"}
+        self.menu_options = {0 :"Play", 1 : "Credits", 2 :"Learn", 3 : "Quit"}
         self.index = 0
         self.cursor_img = pygame.image.load(os.path.join(self.game.assets_dir, "map", "cursor.png"))
         self.cursor_rect = self.cursor_img.get_rect()
-        self.cursor_pos_y = self.menu_rect.y + 38
+        self.cursor_pos_y = self.menu_rect.y + 70
         self.cursor_rect.x, self.cursor_rect.y = self.menu_rect.x + 10, self.cursor_pos_y
 
     def update(self, delta_time, actions):  
@@ -37,15 +37,15 @@ class Menu(State):
         display.blit(self.cursor_img, self.cursor_rect)
 
     def transition_state(self):
-        if self.menu_options[self.index] == "Party": # Play Game
+        if self.menu_options[self.index] == "Play": # Play Game
             new_state = Game_World(self.game)
             # self.game.state_stack.pop()
             new_state.enter_state()
-        elif self.menu_options[self.index] == "Items": # Credits
+        elif self.menu_options[self.index] == "Credits": # Credits
             new_state = Credits(self.game)
             self.game.state_stack.pop()
             new_state.enter_state()
-        elif self.menu_options[self.index] == "Magic": 
+        elif self.menu_options[self.index] == "Learn": 
             pass
         elif self.menu_options[self.index] == "Exit": # Exit
             while len(self.game.state_stack) > 1:
@@ -57,4 +57,4 @@ class Menu(State):
             self.index = (self.index + 1) % len(self.menu_options)
         elif actions['up']:
             self.index = (self.index - 1) % len(self.menu_options)
-        self.cursor_rect.y = self.cursor_pos_y + (self.index * 32)
+        self.cursor_rect.y = self.cursor_pos_y + (self.index * 30)

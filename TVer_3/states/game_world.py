@@ -10,7 +10,7 @@ class Game_World(State):
     def __init__(self, game):
         self.game = game
         State.__init__(self, game)
-        self.background_img = pygame.image.load(os.path.join(self.game.images_dir, "background.png"))
+        self.background_img = pygame.image.load(os.path.join(self.game.images_dir, "painting.PNG"))
         
         # objects
         self.base_file = (os.path.join(self.game.assets_dir, "sprites"))
@@ -20,7 +20,8 @@ class Game_World(State):
             FallingObjects(os.path.join(self.base_file, "cigarette.png"), 2, (0, 0), False),
             FallingObjects(os.path.join(self.base_file, "plasticbag.png"), 2, (0, 0), False),
             FallingObjects(os.path.join(self.base_file, "bananapeel.png"), 2, (0, 0), False),
-            FallingObjects(os.path.join(self.base_file, "can.png"), 2, (0, 0), True)
+            FallingObjects(os.path.join(self.base_file, "can.png"), 2, (0, 0), True),
+            FallingObjects(os.path.join(self.base_file, "pizza.png"), 2, (0, 0), True)
         ]
 
         # Garbage Bin
@@ -38,7 +39,8 @@ class Game_World(State):
 
 
     def spawn_new_trash(self):
-        trash = self.list[int(random.uniform(0, len(self.list)))]
+        # trash = self.list[int(random.uniform(0, len(self.list)))]
+        trash = self.list[len(self.list) - 1]
         trash.randomSpeed()
         trash.randomPosition()
         trash.rect.top = -100
@@ -46,12 +48,12 @@ class Game_World(State):
         return trash
 
     def update(self, delta_time, actions):
-        if actions["start"]:
+        if actions["action1"]:
             new_state = PauseMenu(self.game)
             new_state.enter_state()
         
         elapsed_time = time.time() - self.start_time
-        if (elapsed_time >= 5):
+        if (elapsed_time >= 10):
             if self.score > self.game.high_score:
                 self.game.high_score = self.score
                 self.game.new_high = True
@@ -90,7 +92,7 @@ class Game_World(State):
         if actions["right"] and self.recyclebin_rect.right < 480:
             self.recyclebin_rect.x += self.vel
 
-        pygame.time.delay(10)
+        pygame.time.delay(7)
 
 
     def render(self, display):

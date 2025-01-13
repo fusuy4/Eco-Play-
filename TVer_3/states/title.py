@@ -9,7 +9,7 @@ class Title(State):
         # an instance of the class is created
         def __init__(self, game): 
             State.__init__(self, game)
-            self.titleScreen = pygame.image.load(os.path.join(self.game.images_dir, "titlescreen.jpeg")) # change
+            self.titleScreen = pygame.image.load(os.path.join(self.game.images_dir, "titlescreen.PNG")) # change
             self.menu_mus = pygame.mixer.music.load(os.path.join(self.game.sounds_dir, "MainMenu.mp3"))
 
 
