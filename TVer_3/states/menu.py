@@ -13,7 +13,7 @@ class Menu(State):
         self.menu_rect.center = (self.game.GAME_W*.5, self.game.GAME_H*.6)
         self.background_img = pygame.image.load(os.path.join(self.game.images_dir, "painting.PNG"))
         # Set the cursor and menu states
-        self.menu_options = {0 :"Play", 1 : "Credits", 2 :"Learn", 3 : "Quit"}
+        self.menu_options = {0 :"Play", 1 : "Credits", 2 :"Learn", 3 : "Exit"}
         self.index = 0
         self.cursor_img = pygame.image.load(os.path.join(self.game.assets_dir, "map", "cursor.png"))
         self.cursor_rect = self.cursor_img.get_rect()
@@ -39,7 +39,6 @@ class Menu(State):
     def transition_state(self):
         if self.menu_options[self.index] == "Play": # Play Game
             new_state = Game_World(self.game)
-            # self.game.state_stack.pop()
             new_state.enter_state()
         elif self.menu_options[self.index] == "Credits": # Credits
             new_state = Credits(self.game)
@@ -48,8 +47,8 @@ class Menu(State):
         elif self.menu_options[self.index] == "Learn": 
             pass
         elif self.menu_options[self.index] == "Exit": # Exit
-            while len(self.game.state_stack) > 1:
-                self.game.state_stack.pop()
+            self.game.playing = False
+            self.game.running = False
 
 
     def update_cursor(self, actions):

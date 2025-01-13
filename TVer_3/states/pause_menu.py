@@ -14,7 +14,7 @@ class PauseMenu(State):
         self.index = 0
         self.cursor_img = pygame.image.load(os.path.join(self.game.assets_dir, "map", "cursor.png"))
         self.cursor_rect = self.cursor_img.get_rect()
-        self.cursor_pos_y = self.menu_rect.y + 38
+        self.cursor_pos_y = self.menu_rect.y + 76
         self.cursor_rect.x, self.cursor_rect.y = self.menu_rect.x + 10, self.cursor_pos_y
 
     def update(self, delta_time, actions):  
@@ -32,14 +32,14 @@ class PauseMenu(State):
 
     def transition_state(self):
         from states.game_world import Game_World
-        if self.menu_options[self.index] == "Resume":  # Current Score
+        if self.menu_options[self.index] == "Resume": 
             self.game.state_stack.pop()
-        elif self.menu_options[self.index] == "Restart": # Restart
+        elif self.menu_options[self.index] == "Restart": 
             self.game.state_stack.pop()
             self.game.state_stack.pop()
             new_state = Game_World(self.game)
             new_state.enter_state()
-        elif self.menu_options[self.index] == "Exit": # Quit to Main Menu
+        elif self.menu_options[self.index] == "Exit": 
             while len(self.game.state_stack) > 1:
                 self.game.state_stack.pop()
 

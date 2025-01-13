@@ -42,7 +42,7 @@ class GameOver(State):
 
     def transition_state(self):
         from states.game_world import Game_World
-        if self.menu_options[self.index] == "PLay Again": # Restart
+        if self.menu_options[self.index] == "Play Again": # Restart
             self.game.state_stack.pop()
             new_state = Game_World(self.game)
             new_state.enter_state()

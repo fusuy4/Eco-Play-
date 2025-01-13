@@ -21,7 +21,7 @@ class Game_World(State):
             FallingObjects(os.path.join(self.base_file, "plasticbag.png"), 2, (0, 0), False),
             FallingObjects(os.path.join(self.base_file, "bananapeel.png"), 2, (0, 0), False),
             FallingObjects(os.path.join(self.base_file, "can.png"), 2, (0, 0), True),
-            FallingObjects(os.path.join(self.base_file, "pizza.png"), 2, (0, 0), True)
+            FallingObjects(os.path.join(self.base_file, "pizza.png"), 2, (0, 0), False)
         ]
 
         # Garbage Bin
@@ -39,8 +39,7 @@ class Game_World(State):
 
 
     def spawn_new_trash(self):
-        # trash = self.list[int(random.uniform(0, len(self.list)))]
-        trash = self.list[len(self.list) - 1]
+        trash = self.list[int(random.uniform(0, len(self.list)))]
         trash.randomSpeed()
         trash.randomPosition()
         trash.rect.top = -100
@@ -53,7 +52,7 @@ class Game_World(State):
             new_state.enter_state()
         
         elapsed_time = time.time() - self.start_time
-        if (elapsed_time >= 10):
+        if (elapsed_time >= 30):
             if self.score > self.game.high_score:
                 self.game.high_score = self.score
                 self.game.new_high = True
@@ -99,4 +98,6 @@ class Game_World(State):
         display.blit(self.background_img, (0,0))
         display.blit(self.recyclebin, self.recyclebin_rect)
         display.blit(self.cur_trash.image, self.cur_trash.rect)
-        self.game.draw_text(f'Score: {self.score}', 15, 60, 10)
+        self.game.draw_text('Score: ', 15, 60, 10)
+        self.game.draw_text('Press \'P\' to Pause!', 8, 400, 10)
+        self.game.draw_text(f'{self.score}', 15, 120, 10)

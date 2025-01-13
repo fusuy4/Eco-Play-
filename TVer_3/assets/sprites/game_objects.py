@@ -11,7 +11,7 @@ class FallingObjects:
         self.position = position
 
     def randomSpeed(self):
-        self.speed = 1
+        self.speed = random.uniform(1, 3)
 
     def randomPosition(self):
-        self.position = random.uniform(0, 480)
+        self.position = random.uniform(20, 460)

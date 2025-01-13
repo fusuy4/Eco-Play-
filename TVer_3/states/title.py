@@ -14,14 +14,10 @@ class Title(State):
 
 
         def update(self, delta_time, actions):
-            # if actions["start"]:
-            #     new_state = Game_World(self.game)
-            #     new_state.enter_state()
-            # self.game.reset_keys()
             if actions["start"]:
                 new_state = Menu(self.game)
                 new_state.enter_state()
-                pygame.mixer.music.play()                
+                pygame.mixer.music.play()
             self.game.reset_keys()
             
 
