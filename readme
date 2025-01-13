@@ -3,5 +3,8 @@ EcoPlay is a game dedicated to raising awareness about recycling and correctly d
 How it was built
 This is coded entirely in Python and used only the pygame library. It employs a stack system, inspired by CDcodes (https://github.com/ChristianD37?tab=overview&from=2019-12-01&to=2019-12-31), states, OOP, and more to bring the game to life. All of the art and the soundtrack is completely original as well.
 
-The most recent version of this project is TVer_3 which is a functional game with a working menu system. The work being done at this point is adding in all the features. 
+This game is ready to play! We are still currently working on fixing some of the alignment on the menus, imaging, fixing the soundtrack support, and adding a 'learn' tab to teach the player whats recyclable and whats not. To run the game on your local computer, all you need to do is clone this repo, cd into the TVer_3 directory, and run python3 main.py. Let us know what your high score is!
 
+Thanks for playing. 
+
+- Fusuy Productions
