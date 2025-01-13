@@ -17,8 +17,8 @@ class Menu(State):
         self.index = 0
         self.cursor_img = pygame.image.load(os.path.join(self.game.assets_dir, "map", "cursor.png"))
         self.cursor_rect = self.cursor_img.get_rect()
-        self.cursor_pos_y = self.menu_rect.y + 70
-        self.cursor_rect.x, self.cursor_rect.y = self.menu_rect.x + 10, self.cursor_pos_y
+        self.cursor_pos_y = self.menu_rect.y + 65
+        self.cursor_rect.x, self.cursor_rect.y = self.menu_rect.x + 26, self.cursor_pos_y
 
     def update(self, delta_time, actions):  
         self.update_cursor(actions)      
@@ -56,4 +56,4 @@ class Menu(State):
             self.index = (self.index + 1) % len(self.menu_options)
         elif actions['up']:
             self.index = (self.index - 1) % len(self.menu_options)
-        self.cursor_rect.y = self.cursor_pos_y + (self.index * 30)
+        self.cursor_rect.y = self.cursor_pos_y + (self.index * 40)

@@ -16,12 +16,18 @@ class Game_World(State):
         self.base_file = (os.path.join(self.game.assets_dir, "sprites"))
         self.list = [
             FallingObjects(os.path.join(self.base_file, "plasticbottle.png"), 2, (0, 0), True),
-            FallingObjects(os.path.join(self.base_file, "chipbag.png"), 2, (0, 0), False),
+            # FallingObjects(os.path.join(self.base_file, "chipbag.png"), 2, (0, 0), False),
             FallingObjects(os.path.join(self.base_file, "cigarette.png"), 2, (0, 0), False),
             FallingObjects(os.path.join(self.base_file, "plasticbag.png"), 2, (0, 0), False),
             FallingObjects(os.path.join(self.base_file, "bananapeel.png"), 2, (0, 0), False),
             FallingObjects(os.path.join(self.base_file, "can.png"), 2, (0, 0), True),
-            FallingObjects(os.path.join(self.base_file, "pizza.png"), 2, (0, 0), False)
+            FallingObjects(os.path.join(self.base_file, "pizza.png"), 2, (0, 0), False),
+            FallingObjects(os.path.join(self.base_file, "cardboard.png"), 2, (0, 0), True),
+            FallingObjects(os.path.join(self.base_file, "milkjug.png"), 2, (0, 0), True),
+            FallingObjects(os.path.join(self.base_file, "paper.png"), 2, (0, 0), True),
+            FallingObjects(os.path.join(self.base_file, "straw.png"), 2, (0, 0), False),
+            FallingObjects(os.path.join(self.base_file, "battery.png"), 2, (0, 0), False),
+            FallingObjects(os.path.join(self.base_file, "toothbrush.png"), 2, (0, 0), True)
         ]
 
         # Garbage Bin
