@@ -24,3 +24,4 @@ class Title(State):
         def render(self, display):
               display.fill((255, 255, 255))
               display.blit(self.titleScreen, (0,0))
+              self.game.draw_text('Press Enter to Start!', 7, self.game.GAME_W / 2, self.game.GAME_H / 2 + 40)

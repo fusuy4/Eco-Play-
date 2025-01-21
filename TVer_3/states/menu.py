@@ -2,6 +2,7 @@ import pygame, os
 from states.state import State
 from states.game_world import Game_World
 from states.credits import Credits
+from states.learn import Learn
 
 class Menu(State):
     def __init__(self, game):
@@ -45,7 +46,9 @@ class Menu(State):
             self.game.state_stack.pop()
             new_state.enter_state()
         elif self.menu_options[self.index] == "Learn": 
-            pass
+            new_state = Learn(self.game)
+            self.game.state_stack.pop()
+            new_state.enter_state()
         elif self.menu_options[self.index] == "Exit": # Exit
             self.game.playing = False
             self.game.running = False
